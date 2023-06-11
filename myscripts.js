@@ -72,19 +72,22 @@ const gameBoard = (() => {
                 cell.removeEventListener('click', gameController.playRound)
             });
         }
-        else if(!board[0][0] && !board[0][1] && !board[0][2] && !board[1][0] && !board[1][1] && !board[1][2]
-                && !board[2][0] && !board[2][1] && !board[2][2]) {
+        else if(board[0][0].length && board[0][1].length && board[0][2].length && board[1][0].length && 
+                board[1][1].length && board[1][2].length && board[2][0].length && board[2][1].length && 
+                board[2][2].length) {
+                    console.log('tie');
                     let gameResult = document.createElement('div');
                     gameResult.textContent = 'Tie!'
-                    let body = document.querySelector('body');
-                    body.appendChild(gameResult);
+                    gameResult.classList.add('result');
+                    let wholeContainer = document.querySelector('.wholeContainer');
+                    wholeContainer.appendChild(gameResult);
                 }
     }
     
 
 
     return {
-        display, addMarker, resetData, checkGameOver, board
+        display, addMarker, resetData, checkGameOver
     };
 })();
     
@@ -186,7 +189,7 @@ const createName = (() => {
         pOne.classList.add('name');
         let fieldsetOne = document.querySelector('.fieldsetOne');
         fieldsetOne.appendChild(pOne);
-        createName.createStart();
+        createStart();
 
     }
 
@@ -200,12 +203,12 @@ const createName = (() => {
         pTwo.classList.add('name');
         let fieldsetTwo = document.querySelector('.fieldsetTwo');
         fieldsetTwo.appendChild(pTwo);
-        createName.createStart();
+        createStart();
     }
 
 
 
-    return {createStart}
+    return {}
 })();
 
 
